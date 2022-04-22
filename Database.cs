@@ -11,10 +11,6 @@ namespace BirthdaysBot
 
         public static void Initialize(string dbName)
         {
-#if !DEBUG
-            dbName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Data", dbName);
-#endif
-
             bool newFile = false;
             if (!File.Exists(dbName + ".sqlite"))
             {

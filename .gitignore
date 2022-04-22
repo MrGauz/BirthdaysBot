@@ -5,6 +5,7 @@
 
 # Secrets
 .env
+*.sqlite
 
 # Builds
 obj/

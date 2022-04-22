@@ -13,14 +13,11 @@ namespace BirthdaysBot
         static void Main(string[] args)
         {
             // Load config
-#if DEBUG
             var stream = File.OpenRead(".env");
-#else
-            var stream = File.OpenRead(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "BirthdaysBot", ".env"));
-#endif
             Env.Load(stream);
             var token = Env.GetString("TELEGRAM_BOT_TOKEN");
             stream.Close();
+
             if (string.IsNullOrEmpty(token))
             {
                 Console.WriteLine("Add Telegram bot's token to .env (refer to .env.example)");
