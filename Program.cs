@@ -23,7 +23,7 @@ namespace BirthdaysBot
             stream.Close();
             if (string.IsNullOrEmpty(token))
             {
-                Console.WriteLine("Add Telegram bot token to .env (refer to .env.example)");
+                Console.WriteLine("Add Telegram bot's token to .env (refer to .env.example)");
                 Environment.Exit(1);
             }
 
@@ -44,7 +44,7 @@ namespace BirthdaysBot
             JobManager.Initialize(registry);
 
             // Manual break
-            Console.WriteLine("Press any key to stop the quest");
+            Console.WriteLine("Press any key to stop the bot");
             Console.ReadKey();
         }
     }

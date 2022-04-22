@@ -39,8 +39,7 @@ namespace BirthdaysBot
                         // Handle iCal files
                         if (document.MimeType.ToLower() == "text/calendar")
                         {
-                            // Delete old birthday entries
-                            Database.DeleteUserBirthdays(message.Chat.Id);
+                            await BotClient.SendChatActionAsync(message.Chat.Id, ChatAction.Typing);
 
                             // Download sent file
                             var randomChars = new string(Enumerable.Repeat("69420", 5).Select(s => s[new Random().Next(s.Length)]).ToArray());
@@ -50,10 +49,19 @@ namespace BirthdaysBot
                             await bot.GetInfoAndDownloadFileAsync(document.FileId, calendarStream);
                             calendarStream.Close();
 
-                            foreach (KeyValuePair<string, DateTime> birthday in IcalParser.Parse(tmpFilename))
+                            // Delete old birthday entries
+                            Database.DeleteUserBirthdays(message.Chat.Id);
+
+                            // Add birthdays to database
+                            var birthdays = IcalParser.Parse(tmpFilename);
+                            foreach (KeyValuePair<string, DateTime> birthday in birthdays)
                             {
                                 Database.NewBirthday(message.Chat.Id, birthday.Key, birthday.Value.Month, birthday.Value.Day);
                             }
+                            await BotClient.SendTextMessageAsync(message.Chat.Id, $"{birthdays.Count()} birthday notifications have been scheduled");
+
+                            // Delete temp file
+                            System.IO.File.Delete(tmpFilename);
                         }
                     }
                 }
