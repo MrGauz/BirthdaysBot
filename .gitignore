@@ -1,0 +1,11 @@
+# IDE
+.vs/
+.idea/
+.vscode/
+
+# Secrets
+.env
+
+# Builds
+obj/
+bin/
