@@ -40,6 +40,12 @@ has [no option to enable notifications for birthdays calendar](https://support.g
 7. ???
 8. PROFIT
 
+## (Possible) future plans
+
+- [ ] Support adding birthdays from contacts' list
+- [ ] Instructions on how to export calendars from more platforms
+- [ ] Configure notifications time
+
 ## MIT License
 
 **TL;DR**: do whatever you want, I'm not liable for anything
