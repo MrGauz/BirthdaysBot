@@ -56,9 +56,9 @@ namespace BirthdaysBot
             }
         }
 
-        public static Dictionary<Int64, string> GetTodaysBirthdays()
+        public static List<KeyValuePair<Int64, string>> GetTodaysBirthdays()
         {
-            var birthdays = new Dictionary<Int64, string>();
+            var birthdays = new List<KeyValuePair<Int64, string>>();
             var query = sqlite.CreateCommand();
             query.CommandText = $"SELECT user_id, text FROM birthdays WHERE month = {DateTime.Now.Month} AND day = {DateTime.Now.Day};";
             try
@@ -66,7 +66,7 @@ namespace BirthdaysBot
                 var result = query.ExecuteReader();
                 while (result.Read())
                 {
-                    birthdays[result.GetInt64(0)] = result.GetString(1);
+                    birthdays.Add(new KeyValuePair<Int64, string>(result.GetInt64(0), result.GetString(1)));
                 }
             }
             catch (SqliteException ex)
