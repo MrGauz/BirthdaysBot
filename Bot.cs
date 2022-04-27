@@ -30,6 +30,17 @@ namespace BirthdaysBot
                 if (update.Type == UpdateType.Message)
                 {
                     var message = update.Message;
+                    var chatId = message.Chat.Id;
+
+                    // Welcome new users
+                    if (message.Text.StartsWith("/start"))
+                    {
+                        _ = bot.SendChatActionAsync(chatId, ChatAction.Typing, CancellationToken.None);
+                        var welcomeMessage = "ALLO YOBA\n" +
+                                             "ETO TI???";
+                        var sentMessage = await bot.SendTextMessageAsync(chatId, welcomeMessage, ParseMode.Html, cancellationToken: CancellationToken.None);
+                        _ = bot.PinChatMessageAsync(chatId, sentMessage.MessageId, true, CancellationToken.None);
+                    }
 
                     // Handle sent files
                     if (message.Document != null || (message.ReplyToMessage != null && message.ReplyToMessage.Document != null))
@@ -39,26 +50,35 @@ namespace BirthdaysBot
                         // Handle iCal files
                         if (document.MimeType.ToLower() == "text/calendar")
                         {
-                            await BotClient.SendChatActionAsync(message.Chat.Id, ChatAction.Typing);
+                            _ = bot.SendChatActionAsync(chatId, ChatAction.Typing, CancellationToken.None);
 
                             // Download sent file
                             var randomChars = new string(Enumerable.Repeat("69420", 5).Select(s => s[new Random().Next(s.Length)]).ToArray());
                             var tmpFilename = Path.Combine(Path.GetTempPath(), randomChars + document.FileName);
 
                             using FileStream calendarStream = System.IO.File.Open(tmpFilename, FileMode.Create);
-                            await bot.GetInfoAndDownloadFileAsync(document.FileId, calendarStream);
+                            await bot.GetInfoAndDownloadFileAsync(document.FileId, calendarStream, CancellationToken.None);
                             calendarStream.Close();
 
                             // Delete old birthday entries
-                            Database.DeleteUserBirthdays(message.Chat.Id);
+                            Database.DeleteUserBirthdays(chatId);
 
                             // Add birthdays to database
                             var birthdays = IcalParser.Parse(tmpFilename);
                             foreach (KeyValuePair<string, DateTime> birthday in birthdays)
                             {
-                                Database.NewBirthday(message.Chat.Id, birthday.Key, birthday.Value.Month, birthday.Value.Day);
+                                Database.NewBirthday(chatId, birthday.Key, birthday.Value.Month, birthday.Value.Day);
                             }
-                            await BotClient.SendTextMessageAsync(message.Chat.Id, $"{birthdays.Count()} birthday notifications have been scheduled");
+
+                            // Send confirmation
+                            var properDeclension = birthdays.Count switch
+                            {
+                                1 => "День рождения",
+                                > 1 and <= 4 => "Дня рождения",
+                                _ => "Дней рождений"
+                            };
+                            _ = bot.SendTextMessageAsync(chatId, $"Я нашёл, импортировал и сохранил {birthdays.Count} {properDeclension}.",
+                                cancellationToken: CancellationToken.None);
 
                             // Delete temp file
                             System.IO.File.Delete(tmpFilename);
@@ -68,7 +88,7 @@ namespace BirthdaysBot
             }
             catch (Exception e)
             {
-                await HandleErrorAsync(BotClient, e, cancellationToken);
+                _ = HandleErrorAsync(BotClient, e, cancellationToken);
             }
         }
 
