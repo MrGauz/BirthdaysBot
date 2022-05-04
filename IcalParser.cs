@@ -40,6 +40,8 @@ namespace BirthdaysBot
                             text = text.Replace("'s birthday", "");
                         }
 
+                        // Google Calendar adds user's birthday
+                        if (text == "Happy birthday!") continue;
                     }
                 }
 

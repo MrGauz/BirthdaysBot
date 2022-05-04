@@ -33,7 +33,7 @@ namespace BirthdaysBot
                     var chatId = message.Chat.Id;
 
                     // Welcome new users
-                    if (message.Text.StartsWith("/start"))
+                    if (message.Text != null && message.Text.StartsWith("/start"))
                     {
                         _ = bot.SendChatActionAsync(chatId, ChatAction.Typing, CancellationToken.None);
                         var welcomeMessage = "\ud83d\udc4b\ud83c\udffc\n\n" + 
