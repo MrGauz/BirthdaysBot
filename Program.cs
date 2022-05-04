@@ -35,7 +35,8 @@ namespace BirthdaysBot
             {
                 foreach (KeyValuePair<Int64, string> birthday in Database.GetTodaysBirthdays())
                 {
-                    Bot.SendMessage(birthday.Key, birthday.Value);
+                    var birthdayNotification = $"\ud83e\udd73 Сегодня День рождения у {birthday.Value}. Не порти себе карму, поздравь человека.";
+                    Bot.SendMessage(birthday.Key, birthdayNotification);
                 }
             }).ToRunEvery(1).Days().At(10, 0);
             JobManager.Initialize(registry);
