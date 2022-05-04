@@ -59,7 +59,7 @@ namespace BirthdaysBot
                                              "· Вуаля. Этот файл потом нужно скинуть мне и будет класс.\n\n" + 
                                              "<b>Как мне добавить Дни рождения?</b>\n" + 
                                              "Чтобы добавить или удалить День рождения или поменять имя, тебе нужно поправить данные в самом календаре, а мне скормить новый <code class='code-inline'>.ics</code>-файл. Сделай нужные изменения, загрузи сюда календарный файл и всё будет.";
-                        var sentMessage = await bot.SendTextMessageAsync(chatId, welcomeMessage, ParseMode.Html, cancellationToken: CancellationToken.None);
+                        var sentMessage = await bot.SendTextMessageAsync(chatId, welcomeMessage, ParseMode.Html, disableWebPagePreview:true, cancellationToken: CancellationToken.None);
                         _ = bot.PinChatMessageAsync(chatId, sentMessage.MessageId, true, CancellationToken.None);
                     }
 
@@ -127,7 +127,7 @@ namespace BirthdaysBot
 
         public static Task SendMessage(Int64 chatId, string message)
         {
-            return BotClient.SendTextMessageAsync(chatId, message, ParseMode.Html, disableWebPagePreview: true);
+            return BotClient.SendTextMessageAsync(chatId, message, ParseMode.Html, disableWebPagePreview: true, cancellationToken: CancellationToken.None);
         }
     }
 }
