@@ -32,6 +32,14 @@ namespace BirthdaysBot
                     else if (line.StartsWith("SUMMARY:"))
                     {
                         text = line[8..];
+
+                        // Google Calendar saves SUMMARY as "<contact_name>'s birthday"
+                        // We only want the contact's name
+                        if (text.Contains("'s birthday"))
+                        {
+                            text = text.Replace("'s birthday", "");
+                        }
+
                     }
                 }
 
