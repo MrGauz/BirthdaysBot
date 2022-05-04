@@ -127,7 +127,7 @@ namespace BirthdaysBot
 
         public static Task SendMessage(Int64 chatId, string message)
         {
-            return BotClient.SendTextMessageAsync(chatId, message);
+            return BotClient.SendTextMessageAsync(chatId, message, ParseMode.Html, disableWebPagePreview: true);
         }
     }
 }
