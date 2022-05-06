@@ -6,15 +6,15 @@ Ok, if we're being *serious* serious, this bot will actually just send you notif
 
 ## Why, even?
 
-Primarily, because [Google Calendar users can't enable notifications for Birthdays calendar](https://support.google.com/calendar/thread/1699815?hl=en&msgid=1714805). Don't ask yourself why a multi-trillion dollar corporation doesn't give this option to its users. You will not know.
+Primarily, because [Google Calendar users can't enable notifications for birthdays calendar](https://support.google.com/calendar/thread/1699815?hl=en&msgid=1714805). Don't ask yourself why a multi-trillion dollar corporation doesn't give this option to its users. You will not know.
 
 ## How do I use the bot?
 
 Quite easily. Just send an `.ics` file to the bot.
 
-Keep in mind: the bot itself provides no interface for interacting with Birthday information. If you want to change something, be it someone's name, date of birth *(who knows, you do you)*, or you want to add new Birhdays, do the changes in the calendar.
+Keep in mind: the bot itself provides no interface for interacting with birthday information. If you want to change something, be it someone's name, date of birth *(who knows, you do you)*, or you want to add new birhdays, do the changes in the calendar.
 
-First, change or add info in the calendar. Then export the calendar. Then re-upload the `.ics` file to the bot.
+First, replace or add info in the calendar. Then export the calendar. Then reupload the `.ics` file to the bot.
 
 ## How do I get the ICS file?
 
@@ -34,44 +34,44 @@ You have a couple of options.
 
 ## Wanna host this bot yourself?
 
-> BirthdaysBot imports birthdays into a local SQLite file to schedule notifications
+> BirthdaysBot imports birthdays into a local SQLite file to schedule notifications.
 >
-> This data will be kept **private and secure**, never given to third parties or used for any other purposes than notificating you
+> This data will be kept **private and secure**, never given to third parties or used for any purposes other than notificating you.
 >
-> However, if you don't feel comfortable entrusting me with this data — host your own bot
+> However, if you don't feel comfortable entrusting me with this data — host your own bot.
 
-1. Clone this repository
+1. Clone this repository:
     - ``git clone https://github.com/MrGauz/BirthdaysBot.git``
-2. Create a Telegram bot using [@BotFather](https://t.me/BotFather)
-    - After bot is registered you'll get an API token, use it in the next step
+2. Create a Telegram bot using [@BotFather](https://t.me/BotFather):
+    - After bot is registered you'll get an API token, use it in the next step.
     - **Keep API token a secret!**
-3. Make a copy of ``.env.example`` and name it ``.env``
-    - Put the API token into the ``.env``
-4. [Install .NET Runtime 5.0](https://dotnet.microsoft.com/en-us/download/dotnet/5.0)
-    - Alternatively, you can use the [.NET Runtime 6.0](https://dotnet.microsoft.com/en-us/download/dotnet/6.0)
-5. Build the project, compiled code can be found in ``bin/Release/net5.0/``
-    - ``dotnet build -c Release``
-    - Make sure ``.env`` was copied to the folder with compiled code
-6. Run your bot
+3. Make a copy of ``.env.example`` and name it ``.env``:
+    - Put the API token into the ``.env``.
+4. [Install .NET Runtime 5.0](https://dotnet.microsoft.com/en-us/download/dotnet/5.0).
+    - Alternatively, you can use the [.NET Runtime 6.0](https://dotnet.microsoft.com/en-us/download/dotnet/6.0).
+5. Build the project, compiled code can be found in ``bin/Release/net5.0/``:
+    - ``dotnet build -c Release``.
+    - Make sure ``.env`` was copied to the folder with compiled code.
+6. Run your bot:
     - ``dotnet bin/Release/net5.0/BirthdaysBot.dll``
 7. ???
-8. PROFIT
+8. PROFIT!
 
 ## (Possible) future plans
 
-Let's be frank: it's open source Telegram bot. Most likely it'll be surving it's purpose for as long as it should, but it won't become a multi-million dollar startup.
+Let's be frank: it's an open source Telegram bot. Most likely it'll be surving its purpose for as long as it should, but it won't become a multi-million dollar startup.
 
 However, there are a couple of ideas that might be implemented in the future. Or not. See the paragraph above.
 
-- [ ] Support adding birthdays from contacts' list
-- [ ] Instructions on how to export calendars from more platforms
-- [ ] Configure notifications time
-- [ ] Let users add/remove Birthdays right from the Telegram bot UI without importing `.ics`
-- [ ] Turn this into a bank
+- [ ] Support adding birthdays from contacts' list.
+- [ ] Instructions on how to export calendars from more platforms.
+- [ ] Configure notifications time.
+- [ ] Let users add/remove birthdays right from the Telegram bot UI without importing `.ics`.
+- [ ] Turn this into a bank.
 
 ## MIT License
 
-**TL;DR**: do whatever you want, I'm not liable for anything
+**TL;DR**: do whatever you want, I'm not liable for anything.
 
 ```
 MIT License
