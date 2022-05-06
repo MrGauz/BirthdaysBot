@@ -24,7 +24,7 @@ You have a couple of options.
 1. Go to [Google Calendar's website](https://calendar.google.com/calendar) and log in.
     - Use the desktop version; the mobile app does not support exporting calendars
 2. Open Settings in the top right corner.
-3. Navigate to the "Import & export" tab and click "Export."
+3. Navigate to the "Import & export" tab and click "Export".
 4. You will get a ZIP archive containing separate `.ics` files for each of the calendars
 
 ### macOS native Calendar.App
@@ -36,7 +36,7 @@ You have a couple of options.
 
 > BirthdaysBot imports birthdays into a local SQLite file to schedule notifications.
 >
-> This data will be kept **private and secure**, never given to third parties or used for any purposes other than noticing you.
+> This data will be kept **private and secure**, never given to third parties or used for any purposes other than notifying you.
 >
 > However, if you don't feel comfortable entrusting me with this data — host your own bot.
 
