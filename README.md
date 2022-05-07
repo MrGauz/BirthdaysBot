@@ -1,6 +1,6 @@
 <div align="center">
   <br>
-  <img src="images/logo.png" width="256" alt="">
+  <img src="images/logo.jpg" width="256" alt="">
   <h1>BirthdaysBot</h1>
 </div>
 
