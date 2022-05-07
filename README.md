@@ -1,4 +1,8 @@
-# BirthdaysBot
+<div align="center">
+  <br>
+  <img src="images/logo.png" width="256" alt="">
+  <h1>BirthdaysBot</h1>
+</div>
 
 This [Telegram bot](https://t.me/iCalBirthdaysBot) is a brilliant little example of how a simple iCal parser will make you a better human being. Seriously.
 
